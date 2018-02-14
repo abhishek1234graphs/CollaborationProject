@@ -9,6 +9,10 @@ app.config(function($routeProvider){
 		templateUrl:'views/registrationform.html',
 		controller:'UserController'
 	})
+	.when('/login',{
+		templateUrl:'views/login.html',
+		controller:'UserController'
+	})
 	.otherwise({
 		templateUrl:'views/home.html'
 	})

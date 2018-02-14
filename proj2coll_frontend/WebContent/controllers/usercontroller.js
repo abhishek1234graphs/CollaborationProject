@@ -13,4 +13,13 @@ app.controller('UserController',function($scope,$location,UserService){
 			})
 	}
 	
+	$scope.login=function(user){
+		UserService.login(user).then(function(response){
+			$location.path('/home')
+		},function(response){
+			$scope.error=response.data
+			$location.path('/login')
+		})
+	}
+	
 })

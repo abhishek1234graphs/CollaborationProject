@@ -38,5 +38,19 @@ public class UserController {
 		return new ResponseEntity<User>(user,HttpStatus.OK);
 	}
 	
+	@RequestMapping(value="/login",method=RequestMethod.POST)
+	public ResponseEntity<?> login(@RequestBody User user)
+	{
+		User validUser=userDao.login(user);
+		if(validUser==null)
+		{
+			ErrorClazz error=new ErrorClazz(5,"Login Failed. Invalid UserId/Password");
+			return new ResponseEntity<ErrorClazz>(error,HttpStatus.UNAUTHORIZED);
+		}
+		
+		else
+			return new ResponseEntity<User>(validUser,HttpStatus.OK);
+	}
+	
 
 }

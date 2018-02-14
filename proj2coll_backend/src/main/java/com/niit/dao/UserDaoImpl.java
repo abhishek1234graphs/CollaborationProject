@@ -2,6 +2,7 @@ package com.niit.dao;
 
 import javax.transaction.Transactional;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,15 @@ public class UserDaoImpl implements UserDao {
 		
 		else
 			return false;
+	}
+
+	public User login(User user) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		Query query=session.createQuery("from User where email=? and password=?");
+		query.setString(0,user.getEmail());
+		query.setString(1,user.getPassword());
+		return (User)query.uniqueResult();
 	}
 
 }
