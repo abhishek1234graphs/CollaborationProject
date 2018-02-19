@@ -1,4 +1,7 @@
-{{error.message}}
+<div id="login-box">
+<span class="error" ng-show="error.message!=undefined">{{error.message}}</span>
+<span class="msg" ng-show="message!=undefined">{{message}}</span>
+
 <form>
 
  <table>
@@ -7,8 +10,8 @@
  		    <td>Enter Email</td>
  		    <td><input type="email" ng-model="user.email"></td>
  		
- 		</tr>
  		<tr>
+ 		</tr>
  			<td>Enter Password</td>
  			<td><input type="password" ng-model="user.password"></td>
   		</tr>
@@ -22,3 +25,4 @@
 
 
 </form>
+</div>

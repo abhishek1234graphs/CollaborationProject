@@ -13,5 +13,10 @@ app.factory('UserService',function($http){
 		return $http.post("http://localhost:8081/proj2coll_middleware/login",user)
 	}
 	
+	
+	userService.logout=function(){
+		return $http.put("http://localhost:8081/proj2coll_middleware/logout")
+	}
+	
 	return userService
 })
