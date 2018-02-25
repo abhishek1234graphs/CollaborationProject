@@ -13,6 +13,11 @@ app.config(function($routeProvider){
 		templateUrl:'views/login.html',
 		controller:'UserController'
 	})
+	.when('/edituserprofile',{
+		templateUrl:'views/edituserprofile.html',
+		controller:'UserController'
+		
+	})
 	.otherwise({
 		templateUrl:'views/home.html'
 	})

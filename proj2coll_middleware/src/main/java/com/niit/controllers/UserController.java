@@ -77,5 +77,41 @@ public class UserController {
 		return new ResponseEntity<User>(user,HttpStatus.OK);
 	}
 	
+	@RequestMapping(value="/getuser",method=RequestMethod.GET)
+	public ResponseEntity<?> getUser(HttpSession session)
+	{
+		String email = (String)session.getAttribute("loginId");
+		if(email==null)
+		{
+			ErrorClazz error=new ErrorClazz(5,"Unauthorized Access");
+			return new ResponseEntity<ErrorClazz>(error,HttpStatus.UNAUTHORIZED);
+		}
+		
+		User user = userDao.getUser(email);
+		return new ResponseEntity<User>(user,HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/updateuser",method=RequestMethod.PUT)
+	public ResponseEntity<?> updateUser(@RequestBody User user,HttpSession session)
+	{
+		String email = (String)session.getAttribute("loginId");
+		if(email==null)
+		{
+			ErrorClazz error=new ErrorClazz(5,"Unauthorized Access");
+			return new ResponseEntity<ErrorClazz>(error,HttpStatus.UNAUTHORIZED);
+		}
+		
+		try {
+		userDao.update(user);
+		return new ResponseEntity<User>(user,HttpStatus.OK);
+		}
+		catch(Exception e)
+		{
+			ErrorClazz error = new ErrorClazz(5,"Unable to update User details "+e.getMessage());
+			return new ResponseEntity<ErrorClazz>(error,HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+	}
+	
 
 }
