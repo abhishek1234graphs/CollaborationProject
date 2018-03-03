@@ -34,6 +34,14 @@ app.config(function($routeProvider){
 		templateUrl:'views/blogform.html',
 		controller:'BlogCtrl'
 	})
+	.when('/blogsnotapproved',{
+		templateUrl:'views/blogsnotapproved.html',
+		controller:'BlogCtrl'
+	})
+	.when('/blogsapproved',{
+		templateUrl:'views/blogsapproved.html',
+		controller:'BlogCtrl'
+	})
 	.otherwise({
 		templateUrl:'views/home.html'
 	})
