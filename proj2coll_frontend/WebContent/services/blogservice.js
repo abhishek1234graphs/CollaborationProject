@@ -17,6 +17,10 @@ app.factory('BlogService',function($http){
 		return $http.get("http://localhost:8081/proj2coll_middleware/getblogs/"+1)
 	}
 	
+	blogService.getBlog=function(id){
+		return $http.get("http://localhost:8081/proj2coll_middleware/getblog/"+id)
+	}
+	
 	return blogService;
 	
 })

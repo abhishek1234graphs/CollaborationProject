@@ -32,4 +32,11 @@ public class BlogPostDaoImpl implements BlogPostDao{
 		return blogs;
 	}
 
+	public BlogPost getBlog(int id) {
+		// TODO Auto-generated method stub
+		Session session=sessionFactory.getCurrentSession();
+		BlogPost blogPost=(BlogPost)session.get(BlogPost.class,id);
+		return blogPost;
+	}
+
 }

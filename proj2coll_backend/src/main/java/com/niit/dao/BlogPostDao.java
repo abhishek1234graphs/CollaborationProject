@@ -8,5 +8,6 @@ public interface BlogPostDao {
 	
 	void addBlogPost(BlogPost blogPost);
 	List<BlogPost> listOfBlogs(int approved);
+	BlogPost getBlog(int id);
 
 }
