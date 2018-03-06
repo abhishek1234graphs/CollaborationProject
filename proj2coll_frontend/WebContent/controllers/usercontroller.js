@@ -7,7 +7,7 @@ app.controller('UserController',function($scope,$rootScope,$location,UserService
 	$scope.registerUser=function(user){
 		 UserService.registerUser(user).then(function(response){
 				alert('Updated Details successfully')
-				$location.path('/getallemployees')
+				$location.path('/home')
 			},function(response){
 				$scope.errorMessage=response.data
 			})
