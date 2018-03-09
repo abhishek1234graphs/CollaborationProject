@@ -1,10 +1,16 @@
 <div class="panel panel-info">
 <div class="panel-heading">
-{{blog.blogTitle}}
+{{blog.blogTitle}}<br>
 <b>Posted On: </b>{{blog.postedOn | date:'medium'}}<br>
-<b>Posted By: </b>{{blog.postedBy.firstname}} &nbsp; {{blog.postedBy.lastname}} 
+<b>Posted By: </b>{{blog.postedBy.firstname}} &nbsp; {{blog.postedBy.lastname}}<br>
+<b>Number of Likes: </b>{{blog.likes}}
 </div>
 <div class="panel-body">
 <p ng-bind-html="content"></p>
+<div>
+<a><span class="glyphicon glyphicon-thumbs-up" ng-class="isLiked?'liked':'default'" 
+ng-click="updateLikes(blog.id)"></span></a>
 </div>
 </div>
+</div>
+
