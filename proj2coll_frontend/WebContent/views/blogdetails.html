@@ -1,16 +1,28 @@
 <div class="panel panel-info">
-<div class="panel-heading">
-{{blog.blogTitle}}<br>
-<b>Posted On: </b>{{blog.postedOn | date:'medium'}}<br>
-<b>Posted By: </b>{{blog.postedBy.firstname}} &nbsp; {{blog.postedBy.lastname}}<br>
-<b>Number of Likes: </b>{{blog.likes}}
-</div>
-<div class="panel-body">
-<p ng-bind-html="content"></p>
-<div>
-<a><span class="glyphicon glyphicon-thumbs-up" ng-class="isLiked?'liked':'default'" 
-ng-click="updateLikes(blog.id)"></span></a>
-</div>
-</div>
+	<div class="panel-heading">
+		{{blog.blogTitle}}<br> <b>Posted On: </b>{{blog.postedOn |
+		date:'medium'}}<br> <b>Posted By: </b>{{blog.postedBy.firstname}}
+		&nbsp; {{blog.postedBy.lastname}}<br> <b>Number of Likes: </b>{{blog.likes}}
+	</div>
+	<div class="panel-body">
+		<p ng-bind-html="content"></p>
+		<div>
+			<a><span class="glyphicon glyphicon-thumbs-up"
+				ng-class="isLiked?'liked':'default'" ng-click="updateLikes(blog.id)"></span></a>{{blog.likes}}
+			Likes
+		</div>
+		<div>
+		{{exceptionMessage.message}}
+		<textarea rows="1" cols="10" ng-model="commentTxt"></textarea>
+		<button type="button" class="btn btn-primary" ng-click="addComment(blog,commentTxt)">Post Comment</button>
+		<br>
+		<ul style="list-style:none">
+		<li ng-repeat="comment in comments | orderBy:'-commentedOn'">
+		{{comment.commentTxt}} &nbsp;<b> Commented by </b> {{comment.commentedBy.firstname}} <b>Commented on</b> {{comment.commentedOn | date:'medium'}}
+		
+		</li>
+		</ul>
+		</div>
+	</div>
 </div>
 

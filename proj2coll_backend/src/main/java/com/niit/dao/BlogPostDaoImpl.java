@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 import javax.transaction.Transactional;
+
+import com.niit.model.BlogComment;
 import com.niit.model.BlogPost;
 import com.niit.model.Notification;
 
@@ -62,6 +64,21 @@ public class BlogPostDaoImpl implements BlogPostDao{
 		notification.setRejectionReason(rejectionReason);
 		session.save(notification);
 		session.delete(blog);
+	}
+
+	public void addBlogComment(BlogComment blogComment) {
+		// TODO Auto-generated method stub
+		Session session=sessionFactory.getCurrentSession();
+		session.save(blogComment);
+	}
+
+	public List<BlogComment> getAllBlogComments(int blogPostId) {
+		// TODO Auto-generated method stub
+		Session session=sessionFactory.getCurrentSession();
+		Query query=session.createQuery("from BlogComment where blogPost.id=?");
+		query.setInteger(0,blogPostId);
+		List<BlogComment> blogComments=query.list();
+		return blogComments;
 	}
 
 }

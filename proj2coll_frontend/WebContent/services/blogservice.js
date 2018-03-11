@@ -37,6 +37,13 @@ app.factory('BlogService',function($http){
 		return $http.put("http://localhost:8081/proj2coll_middleware/updatelikes/"+id);
 	}
 	
+	blogService.addComment=function(blogComment){
+		return $http.post("http://localhost:8081/proj2coll_middleware/addcomment",blogComment);
+	}
+	
+	blogService.getBlogComments=function(id){
+		return $http.get("http://localhost:8081/proj2coll_middleware/blogcomments/"+id);
+	}
 	
 	
 	return blogService;

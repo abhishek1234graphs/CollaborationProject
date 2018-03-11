@@ -75,5 +75,41 @@ app.controller('BlogDetailsCtrl',function($scope,$location,BlogService,$rootScop
 		
 	}
 	
+	$scope.addComment=function(blog,commentTxt){
+		$scope.blogComment={}
+		$scope.blogComment.blogPost=blog;
+		$scope.blogComment.commentTxt=commentTxt;
+		
+		BlogService.addComment($scope.blogComment).then(
+				function(response){
+					$scope.commentTxt=''
+					getBlogComments(id)
+				},
+				function(response){
+					$rootScope.error=response.data
+					if(response.status==401)
+						$location.path('/login')
+					else
+					{
+						$scope.exceptionMessage=response.data;
+					}
+				})
+	}
+	
+	function getBlogComments(id){
+		BlogService.getBlogComments(id).then(
+				function(response){
+					$scope.comments=response.data
+				},
+				function(response){
+					$rootScope.error=response.data
+					if(response.status==401)
+						$location.path('/login')
+				})
+	}
+	
+	getBlogComments(id);
+	
+	
 	
 })
