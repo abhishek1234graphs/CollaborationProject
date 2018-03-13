@@ -3,6 +3,8 @@
 		{{blog.blogTitle}}<br> <b>Posted On: </b>{{blog.postedOn |
 		date:'medium'}}<br> <b>Posted By: </b>{{blog.postedBy.firstname}}
 		&nbsp; {{blog.postedBy.lastname}}<br> <b>Number of Likes: </b>{{blog.likes}}
+		<br>
+		<img src="http://localhost:8081/proj2coll_middleware/getimage/{{blog.postedBy.email}}" alt="" height="30px" width="30px">
 	</div>
 	<div class="panel-body">
 		<p ng-bind-html="content"></p>
