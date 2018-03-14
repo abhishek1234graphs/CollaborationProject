@@ -1,0 +1,14 @@
+<table class="table table-striped">
+<tr ng-repeat="user in suggestedUsers">
+<td>{{user.email}}<br>
+{{user.firstname}} &nbsp; {{user.lastname}}<br>
+<b>Phone Number</b> {{user.phonenumber}}
+</td>
+<td>
+<img src="http://localhost:8081/proj2coll_middleware/getimage/{{user.email}}" alt="No Image" height="30px" width="30px">
+</td>
+<td>
+<button type="button" class="button button-primary">Add Friend</button>
+</td>
+</tr>
+</table>
