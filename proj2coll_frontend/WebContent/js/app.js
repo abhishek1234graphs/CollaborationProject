@@ -65,6 +65,10 @@ app.config(function($routeProvider){
 		templateUrl:'views/suggestedusers.html',
 		controller:'FriendCtrl'
 	})
+	.when('/pendingrequests',{
+		templateUrl:'views/pendingrequests.html',
+		controller:'FriendCtrl'
+	})
 	.otherwise({
 		templateUrl:'views/home.html'
 	})
