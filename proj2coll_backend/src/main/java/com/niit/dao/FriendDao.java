@@ -13,4 +13,10 @@ public interface FriendDao
 	void addFriend(Friend friend);
 	
 	List<Friend> pendingRequests(String toIdEmail);
+
+	void acceptRequest(Friend request);
+
+	void deleteRequest(Friend request);
+	
+	List<Friend> listOfFriends(String email);
 }

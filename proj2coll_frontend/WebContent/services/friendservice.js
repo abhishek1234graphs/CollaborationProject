@@ -18,5 +18,13 @@ app.factory('FriendService',function($http){
 		return $http.get("http://localhost:8081/proj2coll_middleware/pendingrequests");
 	}
 	
+	friendService.acceptRequest=function(request){
+		return $http.put("http://localhost:8081/proj2coll_middleware/acceptrequest",request);
+	}
+	
+	friendService.deleteRequest=function(request){
+		return $http.put("http://localhost:8081/proj2coll_middleware/deleterequest",request);
+	}
+	
 	return friendService;
 })
