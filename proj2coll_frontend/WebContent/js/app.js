@@ -73,12 +73,16 @@ app.config(function($routeProvider){
 		templateUrl:'views/friendsList.html',
 		controller:'FriendCtrl'
 	})
+	.when('/chat',{
+		templateUrl:'views/chat.html',
+		controller:'ChatCtrl'
+	})
 	.otherwise({
 		templateUrl:'views/home.html'
 	})
 })
 
-app.run(function($location,$rootScope,$cookieStore,UserService){
+app.run(function($location,$rootScope,$cookieStore,UserService,NotificationService){
 	if($rootScope.loggedInUser==undefined)
 		$rootScope.loggedInUser=$cookieStore.get('currentuser')
 		

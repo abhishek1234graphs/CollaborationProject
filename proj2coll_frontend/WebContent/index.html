@@ -88,6 +88,9 @@
 						</span>
 						</ul>
 						</li>
+						
+						
+						<li><a href="#/chat">Chat Room</a></li>
 							
 						<li><a href="#"	ng-show="loggedInUser.firstname!=undefined">Welcome {{loggedInUser.firstname}}&nbsp;{{loggedInUser.lastname}}
 						</a>
@@ -121,5 +124,9 @@
 <script type="text/javascript" src="controllers/notificationcontroller.js"></script>
 <script type="text/javascript" src="services/friendservice.js"></script>
 <script type="text/javascript" src="controllers/friendcontroller.js"></script>
+<script type="text/javascript" src="js/sockjs/sockjs.min.js"></script>
+<script type="text/javascript" src="js/stomp/dist/stomp.min.js"></script>
+<script type="text/javascript" src="services/chatservice.js"></script>
+<script type="text/javascript" src="controllers/chatcontroller.js"></script>
 
 </html>
