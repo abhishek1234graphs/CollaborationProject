@@ -43,4 +43,58 @@ app.controller('ChatCtrl',function($rootScope,$scope,ChatService){
 	}
 	
 	
+	$scope.sendMessage = function(chat) {
+        chat.from = $scope.userName;
+      
+        $scope.stompClient.send("/app/chat", {}, JSON.stringify(chat));
+        $rootScope.$broadcast('sendingChat', chat);
+        $scope.chat.message = '';
+
+    };
+
+
+    $scope.$on('sockConnected', function(event, frame) {
+        
+  
+        $scope.userName=$rootScope.loggedInUser.firstname;
+       
+        $scope.stompClient.subscribe("/queue/chats/"+$scope.userName, function(message) {
+        	
+            $scope.processIncomingMessage(message, false);
+        });
+        
+        
+        $scope.stompClient.subscribe("/queue/chats", function(message) {
+        	
+            $scope.processIncomingMessage(message, true);
+        });
+        
+        
+    });
+    
+    $scope.processIncomingMessage = function(message, isBroadcast) {
+        message = JSON.parse(message.body);
+        message.direction = 'incoming';
+	    message.broadcast=isBroadcast
+        if(message.from != $scope.userName) {
+        	$scope.addChat(message);
+            $scope.$apply(); // since inside subscribe closure
+        }
+    };
+
+ 
+    $scope.addChat = function(chat) {
+        $scope.chats.push(chat);
+    };
+    
+    $scope.$on('sendingChat', function(event, sentChat) {
+        chat = angular.copy(sentChat);
+        chat.from = 'Me';
+        chat.direction = 'outgoing';
+        $scope.addChat(chat);
+    });
+    
+    
+    
+	
 })
